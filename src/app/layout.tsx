@@ -8,6 +8,7 @@ import { JotaiProvider } from '@/components/jotai-provider';
 import { ModalProvider } from '@/components/modal-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { siteConfig } from '@/config';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import './globals.css';
 
@@ -22,14 +23,15 @@ const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
         <body className={`${inter.className} antialiased`}>
+          <NuqsAdapter>
           <ConvexClientProvider>
             <JotaiProvider>
               <Toaster theme="light" richColors closeButton />
               <ModalProvider />
-
               {children}
             </JotaiProvider>
           </ConvexClientProvider>
+          </NuqsAdapter>
         </body>
       </html>
     </ConvexAuthNextjsServerProvider>
